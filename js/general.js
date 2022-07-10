@@ -26,7 +26,7 @@ let buyMultiplierBtnClickCount;
 if(localStorage.getItem("buyMultiplierBtnClickCountState") === null){
     buyMultiplierBtnClickCount = 1;
 } else {
-    buyMultiplierBtnClickCount = localStorage.getItem("buyMultiplierBtnClickCountState");
+    buyMultiplierBtnClickCount = localStorage.getItem("buyMultiplierBtnClickCountState") * 1;
 };
 let buyMultiplier;
     // sets the buyMultiplier on load
@@ -59,22 +59,22 @@ buyMultiplierBtn.addEventListener("click", () => {
     if(buyMultiplierBtnClickCount == 1){
         buyMultiplierBtnClickCount += 1;
         buyMultiplierBtn.textContent = "25x"
-        localStorage.setItem("buyMultiplierBtnClickCountState", "2")
+        localStorage.setItem("buyMultiplierBtnClickCountState", 2)
     } else if(buyMultiplierBtnClickCount == 2){
         buyMultiplierBtnClickCount += 1;
         buyMultiplierBtn.textContent = "50x"
-        localStorage.setItem("buyMultiplierBtnClickCountState", "3")
+        localStorage.setItem("buyMultiplierBtnClickCountState", 3)
     } else if(buyMultiplierBtnClickCount == 3){
         buyMultiplierBtnClickCount += 1;
         buyMultiplierBtn.textContent = "100x"
-        localStorage.setItem("buyMultiplierBtnClickCountState", "4")
+        localStorage.setItem("buyMultiplierBtnClickCountState", 4)
     } else if(buyMultiplierBtnClickCount == 4){
         buyMultiplierBtnClickCount += 1;
         buyMultiplierBtn.textContent = "Max"
-        localStorage.setItem("buyMultiplierBtnClickCountState", "5")
+        localStorage.setItem("buyMultiplierBtnClickCountState", 5)
     } else if(buyMultiplierBtnClickCount == 5){
         buyMultiplierBtnClickCount = 1;
         buyMultiplierBtn.textContent = "1x"
-        localStorage.setItem("buyMultiplierBtnClickCountState", "1")
+        localStorage.setItem("buyMultiplierBtnClickCountState", 1)
     }
 })
