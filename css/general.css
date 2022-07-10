@@ -1,0 +1,142 @@
+* {
+    font-family: albert;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: albert;
+    src: url(../font/AlbertText-Bold.ttf);
+}
+
+:root {
+    --progressIndicatorWidth: 250px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5%;
+    padding: calc(5% + 100px) 0 5%;
+}
+
+.header {
+    position: absolute;
+    height: 10%;
+    min-height: 100px;
+    width: 100%;
+    top: 0;
+    background-color: rgb(84, 84, 84);
+    display: flex;
+    align-items: center;
+}
+
+div.title {
+    font-size: 64px;
+    margin: 0 auto 0 2%;
+}
+
+div.buyMultiplier {
+    text-align: center;
+    width: 108px;
+    padding: 13px 26px;
+    background-color: rgb(34, 135, 0);
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px 1px rgb(0, 0, 0);
+}
+
+div.ascend {
+    padding: 13px 26px;
+    background-color: rgb(72, 4, 168);
+    border-radius: 15px;
+    box-shadow: 3px 3px 10px 1px rgb(0, 0, 0);
+}
+
+.headerItem {
+    font-size: 32px;
+    margin: 0 2%;
+}
+
+.tower {
+    min-width: 700px;
+    height: 200px;
+    background-color: rgb(84, 84, 84);
+    box-shadow: 3px 3px 5px 3px rgb(128, 128, 128);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.towerImg {
+    height: 150px;
+    width: 150px;
+    background-color: rgb(152, 152, 152);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 76px;
+}
+
+.towerInfoWrap {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.towerStats {
+    height: 130px;
+    background-color: rgb(152, 152, 152);
+    border-radius: 5px;
+    margin: 25px 0 auto;
+    padding: 0 2.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stat {
+    font-size: 24px;
+}
+
+.progressBar {
+    height: 10px;
+    width: 400px;
+    background-color: rgb(152, 152, 152);
+    border-radius: 5px;
+    margin-bottom: 25px;
+    z-index: 200;
+}
+
+.progressBar::before {
+    content: "";
+    display: flex;
+    height: 10px;
+    width: var(--progressIndicatorWidth);
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.buyButton {
+    width: 104px;
+    height: 54px;
+    background-color: rgb(34, 135, 0);
+    box-shadow: 3px 3px 5px 1px rgb(0, 0, 0);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
