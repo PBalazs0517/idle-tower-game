@@ -9,7 +9,7 @@
 }
 
 :root {
-    --progressIndicatorWidth: 250px;
+    --t1progressIndicatorWidth: 250px;
 }
 
 html, body {
@@ -116,14 +116,13 @@ div.ascend {
     background-color: rgb(152, 152, 152);
     border-radius: 5px;
     margin-bottom: 25px;
-    z-index: 200;
 }
 
-.progressBar::before {
+#towerOneProgres::before {
     content: "";
     display: flex;
     height: 10px;
-    width: var(--progressIndicatorWidth);
+    width: var(--t1progressIndicatorWidth);
     background-color: rgb(255, 0, 0);
     border-radius: 5px;
     margin-bottom: 25px;
@@ -139,4 +138,25 @@ div.ascend {
     align-items: center;
     justify-content: center;
     font-size: 24px;
+}
+
+.locked {
+    height: 200px;
+    width: 700px;
+    position: absolute;
+    background-color: rgb(54, 53, 53);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.towerBuyBtn {
+    background-color: rgb(34, 135, 0);
+    border-radius: 5px;
+    padding: 10px 20px;
+    min-width: 108px;
+    text-align: center;
+    box-shadow: 3px 3px 5px 1px rgb(0, 0, 0);
 }
