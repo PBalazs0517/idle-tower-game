@@ -113,9 +113,9 @@ function makeTower(towerNum) {
         localStorage.setItem(`t${towerNum}Generated`, true);
         return [ towers[`t${towerNum}`].level, towers[`t${towerNum}`].profit, towers[`t${towerNum}`].speed];
     } else {
-        towers[`t${towerNum}`].level = localStorage.getItem(`t${towerNum}LevelStored`);
-        towers[`t${towerNum}`].profit = localStorage.getItem(`t${towerNum}ProfitStored`);
-        towers[`t${towerNum}`].speed = localStorage.getItem(`t${towerNum}SpeedStored`); 
+        towers[`t${towerNum}`].level = localStorage.getItem(`t${towerNum}LevelStored`) * 1;
+        towers[`t${towerNum}`].profit = localStorage.getItem(`t${towerNum}ProfitStored`) * 1;
+        towers[`t${towerNum}`].speed = localStorage.getItem(`t${towerNum}SpeedStored`) * 1; 
         let lvlDisplay = document.getElementById(`tower${towerNum}Lvl`);
         let profitDisplay = document.getElementById(`tower${towerNum}Profit`);
         let speedDisplay = document.getElementById(`tower${towerNum}Speed`);
@@ -192,3 +192,30 @@ if(localStorage.getItem(`t6Generated`) == "true") {
     let t6Block = document.getElementById("tower6Locked");
     t6Block.style.display = "none";
 };
+
+//upgrade button
+
+function tUpgrade(tower, towerMultiplier, upgradeAmount) {
+    for( let i = 1; i < upgradeAmount + 1; i++ ) {
+        towers[tower].level += 1 * towerMultiplier;
+        towers[tower].profit += 1 * towerMultiplier; 
+        if(towers[tower].level % 50 == 0) {
+            towers[tower].speed -= 1 * towerMultiplier;
+        };
+        localStorage.setItem(`t${tower.charAt(1)}LevelStored`, towers[`t${tower.charAt(1)}`].level);
+        localStorage.setItem(`t${tower.charAt(1)}ProfitStored`, towers[`t${tower.charAt(1)}`].profit);
+        localStorage.setItem(`t${tower.charAt(1)}SpeedStored`, towers[`t${tower.charAt(1)}`].speed);
+        let lvlDisplay = document.getElementById(`tower${tower.charAt(1)}Lvl`);
+        let profitDisplay = document.getElementById(`tower${tower.charAt(1)}Profit`);
+        let speedDisplay = document.getElementById(`tower${tower.charAt(1)}Speed`);
+        lvlDisplay.textContent = "Level: " + towers[tower].level;
+        profitDisplay.textContent ="Profit: " + towers[tower].profit + "$";
+        speedDisplay.textContent = "Speed: " + towers[tower].speed + "s";
+    };
+};
+
+// assign tUpgrade to buy buttons
+let t1UpgradeBtn = document.getElementById("tower1Buy");
+t1UpgradeBtn.addEventListener("click", () => {
+    tUpgrade("t1", 1, 1)
+})
