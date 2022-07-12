@@ -80,12 +80,36 @@ buyMultiplierBtn.addEventListener("click", () => {
 });
 //towers
 let towers = {
-    t1: {},
-    t2: {},
-    t3: {},
-    t4: {},
-    t5: {},
-    t6: {},
+    t1: {
+        levelDisplay: document.getElementById("tower1Lvl"),
+        profitDisplay: document.getElementById("tower1Profit"),
+        speedDisplay: document.getElementById("tower1Speed"),
+    },
+    t2: {
+        levelDisplay: document.getElementById("tower2Lvl"),
+        profitDisplay: document.getElementById("tower2Profit"),
+        speedDisplay: document.getElementById("tower2Speed"),
+    },
+    t3: {
+        levelDisplay: document.getElementById("tower3Lvl"),
+        profitDisplay: document.getElementById("tower3Profit"),
+        speedDisplay: document.getElementById("tower3Speed"),
+    },
+    t4: {
+        levelDisplay: document.getElementById("tower4Lvl"),
+        profitDisplay: document.getElementById("tower4Profit"),
+        speedDisplay: document.getElementById("tower4Speed"),
+    },
+    t5: {
+        levelDisplay: document.getElementById("tower5Lvl"),
+        profitDisplay: document.getElementById("tower5Profit"),
+        speedDisplay: document.getElementById("tower5Speed"),
+    },
+    t6: {
+        levelDisplay: document.getElementById("tower6Lvl"),
+        profitDisplay: document.getElementById("tower6Profit"),
+        speedDisplay: document.getElementById("tower6Speed"),
+    },
 };
 
 //default tower stats
@@ -101,12 +125,9 @@ function makeTower(towerNum) {
         towers[`t${towerNum}`].level = defStats.level * towerNum;
         towers[`t${towerNum}`].profit = defStats.profit * towerNum;
         towers[`t${towerNum}`].speed = defStats.speed * 1.5 * towerNum;
-        let lvlDisplay = document.getElementById(`tower${towerNum}Lvl`);
-        let profitDisplay = document.getElementById(`tower${towerNum}Profit`);
-        let speedDisplay = document.getElementById(`tower${towerNum}Speed`);
-        lvlDisplay.textContent = "Level: " + towers[`t${towerNum}`].level;
-        profitDisplay.textContent ="Profit: " + towers[`t${towerNum}`].profit + "$";
-        speedDisplay.textContent = "Speed: " + towers[`t${towerNum}`].speed + "s";
+        towers[`t${towerNum}`].levelDisplay.textContent = "Level: " + towers[`t${towerNum}`].level;
+        towers[`t${towerNum}`].profitDisplay.textContent ="Profit: " + towers[`t${towerNum}`].profit + "$";
+        towers[`t${towerNum}`].speedDisplay.textContent = "Speed: " + towers[`t${towerNum}`].speed + "s";
         localStorage.setItem(`t${towerNum}LevelStored`, towers[`t${towerNum}`].level);
         localStorage.setItem(`t${towerNum}ProfitStored`, towers[`t${towerNum}`].profit);
         localStorage.setItem(`t${towerNum}SpeedStored`, towers[`t${towerNum}`].speed);
@@ -116,12 +137,9 @@ function makeTower(towerNum) {
         towers[`t${towerNum}`].level = localStorage.getItem(`t${towerNum}LevelStored`) * 1;
         towers[`t${towerNum}`].profit = localStorage.getItem(`t${towerNum}ProfitStored`) * 1;
         towers[`t${towerNum}`].speed = localStorage.getItem(`t${towerNum}SpeedStored`) * 1; 
-        let lvlDisplay = document.getElementById(`tower${towerNum}Lvl`);
-        let profitDisplay = document.getElementById(`tower${towerNum}Profit`);
-        let speedDisplay = document.getElementById(`tower${towerNum}Speed`);
-        lvlDisplay.textContent = "Level: " + towers[`t${towerNum}`].level;
-        profitDisplay.textContent ="Profit: " + towers[`t${towerNum}`].profit + "$";
-        speedDisplay.textContent = "Speed: " + towers[`t${towerNum}`].speed + "s";
+        towers[`t${towerNum}`].levelDisplay.textContent = "Level: " + towers[`t${towerNum}`].level;
+        towers[`t${towerNum}`].profitDisplay.textContent ="Profit: " + towers[`t${towerNum}`].profit + "$";
+        towers[`t${towerNum}`].speedDisplay.textContent = "Speed: " + towers[`t${towerNum}`].speed + "s";
     }
 };
 
@@ -205,12 +223,9 @@ function tUpgrade(tower, towerMultiplier, upgradeAmount) {
         localStorage.setItem(`t${tower.charAt(1)}LevelStored`, towers[`t${tower.charAt(1)}`].level);
         localStorage.setItem(`t${tower.charAt(1)}ProfitStored`, towers[`t${tower.charAt(1)}`].profit);
         localStorage.setItem(`t${tower.charAt(1)}SpeedStored`, towers[`t${tower.charAt(1)}`].speed);
-        let lvlDisplay = document.getElementById(`tower${tower.charAt(1)}Lvl`);
-        let profitDisplay = document.getElementById(`tower${tower.charAt(1)}Profit`);
-        let speedDisplay = document.getElementById(`tower${tower.charAt(1)}Speed`);
-        lvlDisplay.textContent = "Level: " + towers[tower].level;
-        profitDisplay.textContent ="Profit: " + towers[tower].profit + "$";
-        speedDisplay.textContent = "Speed: " + towers[tower].speed + "s";
+        towers[tower].levelDisplay.textContent = "Level: " + towers[tower].level;
+        towers[tower].profitDisplay.textContent ="Profit: " + towers[tower].profit + "$";
+        towers[tower].speedDisplay.textContent = "Speed: " + towers[tower].speed + "s";
     };
 };
 
