@@ -3,6 +3,7 @@ document.addEventListener("keypress", e => {
     if(e.key = "d") {
         localStorage.clear()
         localStorage.setItem("savedMoney", 5000)
+        location.reload()
     }
 })
 
@@ -12,10 +13,26 @@ let money;
 if(localStorage.getItem("savedMoney") === null) {
     money = 0;
 } else {
-    money = localStorage.getItem("savedMoney")
+    money = localStorage.getItem("savedMoney") * 1;
 };
 let moneyDisplay = document.getElementById("money");
 moneyDisplay.textContent = money + " $";
+
+//manage money
+
+function moneyManage(operator, moneyToUse) {
+    if(operator == "+") {
+        money += moneyToUse;
+        localStorage.setItem("savedMoney", money);
+        moneyDisplay.textContent = money + " $";
+        return money;
+    } else if(operator == "-") {
+        money -= moneyToUse;
+        localStorage.setItem("savedMoney", money);
+        moneyDisplay.textContent = money + " $";
+        return money;
+    }
+}
 
 //multiplier
 
@@ -135,6 +152,11 @@ let defStats = {
     speed: 10,
 };
 
+// tower functionality
+function towerMoneyGenerator(tower) {
+        moneyManage("+", towers[tower].profit)
+}
+
 //function that makes the towers
 function makeTower(towerNum) {
     if(localStorage.getItem(`t${towerNum}Generated`) === null) {
@@ -170,9 +192,7 @@ t2BuyBtn.addEventListener("click", () => {
         makeTower(2);
         let t2Block = document.getElementById("tower2Locked");
         t2Block.style.display = "none";
-        money -= 200; 
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", 200);
     };
 });
 let t3BuyBtn = document.getElementById("tower3BuyBtn");
@@ -181,9 +201,7 @@ t3BuyBtn.addEventListener("click", () => {
         makeTower(3);
         let t3Block = document.getElementById("tower3Locked");
         t3Block.style.display = "none";
-        money -= 300; 
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", 300);
     };
 });
 let t4BuyBtn = document.getElementById("tower4BuyBtn");
@@ -192,9 +210,7 @@ t4BuyBtn.addEventListener("click", () => {
         makeTower(4);
         let t4Block = document.getElementById("tower4Locked");
         t4Block.style.display = "none";
-        money -= 400; 
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", 400);
     };
 });
 let t5BuyBtn = document.getElementById("tower5BuyBtn");
@@ -203,9 +219,7 @@ t5BuyBtn.addEventListener("click", () => {
         makeTower(5);
         let t5Block = document.getElementById("tower5Locked");
         t5Block.style.display = "none";
-        money -= 500; 
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", 500);
     };
 });
 let t6BuyBtn = document.getElementById("tower6BuyBtn");
@@ -214,9 +228,7 @@ t6BuyBtn.addEventListener("click", () => {
         makeTower(6);
         let t6Block = document.getElementById("tower6Locked");
         t6Block.style.display = "none";
-        money -= 600; 
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", 600);
     };
 });
 
@@ -233,7 +245,7 @@ if(localStorage.getItem(`t3Generated`) == "true") {
     t3Block.style.display = "none";
 };
 if(localStorage.getItem(`t4Generated`) == "true") {
-    makeTower(4);
+    makeTower(4);    
     let t4Block = document.getElementById("tower4Locked");
     t4Block.style.display = "none";
 };
@@ -254,9 +266,9 @@ function tUpgrade(tower, towerMultiplier, upgradeAmount) {
     for( let i = 1; i < upgradeAmount + 1; i++ ) {
         towers[tower].upgradePrice += (towers[tower].upgradePrice / 10) * 0.5 ;
         towers[tower].upgradePrice = Math.round(towers[tower].upgradePrice)
-        towers[tower].level += 1 * towerMultiplier;
+        towers[tower].level += 1;
         towers[tower].profit += 1 * towerMultiplier; 
-        if(towers[tower].level % 15 == 0 &&  towers[tower].speed >= 1) {
+        if(towers[tower].level % 15 == 0 && towers[tower].speed > 1) {
             towers[tower].speed -= 1 * towerMultiplier;
         };
         localStorage.setItem(`t${tower.charAt(1)}UpgradePriceStored`, towers[`t${tower.charAt(1)}`].upgradePrice);
@@ -270,15 +282,11 @@ function tUpgrade(tower, towerMultiplier, upgradeAmount) {
     };
 };
 
-//upgarde price
-
 // assign tUpgrade() to buy buttons
 let t1UpgradeBtn = document.getElementById("tower1Buy");
 t1UpgradeBtn.addEventListener("click", () => {
     if(money >= towers.t1.upgradePrice){
-        money -= towers.t1.upgradePrice;
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", towers.t1.upgradePrice);
         tUpgrade("t1", 1, buyMultiplier);
     };
 });
@@ -286,9 +294,7 @@ t1UpgradeBtn.addEventListener("click", () => {
 let t2UpgradeBtn = document.getElementById("tower2Buy");
 t2UpgradeBtn.addEventListener("click", () => {
     if(money >= towers.t2.upgradePrice){
-        money -= towers.t2.upgradePrice;
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", towers.t2.upgradePrice);
         tUpgrade("t2", 2, buyMultiplier);
     };
 });
@@ -296,9 +302,7 @@ t2UpgradeBtn.addEventListener("click", () => {
 let t3UpgradeBtn = document.getElementById("tower3Buy");
 t3UpgradeBtn.addEventListener("click", () => {
     if(money >= towers.t3.upgradePrice){
-        money -= towers.t3.upgradePrice;
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", towers.t3.upgradePrice);
         tUpgrade("t3", 3, buyMultiplier);
     };
 });
@@ -306,9 +310,7 @@ t3UpgradeBtn.addEventListener("click", () => {
 let t4UpgradeBtn = document.getElementById("tower4Buy");
 t4UpgradeBtn.addEventListener("click", () => {
     if(money >= towers.t4.upgradePrice){
-        money -= towers.t4.upgradePrice;
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", towers.t4.upgradePrice);
         tUpgrade("t4", 4, buyMultiplier);
     };
 });
@@ -316,9 +318,7 @@ t4UpgradeBtn.addEventListener("click", () => {
 let t5UpgradeBtn = document.getElementById("tower5Buy");
 t5UpgradeBtn.addEventListener("click", () => {
     if(money >= towers.t5.upgradePrice){
-        money -= towers.t5.upgradePrice;
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", towers.t5.upgradePrice);
         tUpgrade("t5", 5, buyMultiplier);
     };
 });
@@ -326,9 +326,8 @@ t5UpgradeBtn.addEventListener("click", () => {
 let t6UpgradeBtn = document.getElementById("tower6Buy");
 t6UpgradeBtn.addEventListener("click", () => {
     if(money >= towers.t6.upgradePrice){
-        money -= towers.t6.upgradePrice;
-        localStorage.setItem("savedMoney", money)
-        moneyDisplay.textContent = money + " $";
+        moneyManage("-", towers.t6.upgradePrice);
         tUpgrade("t6", 6, buyMultiplier);
     };
 });
+
